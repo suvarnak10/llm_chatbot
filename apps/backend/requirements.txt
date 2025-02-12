@@ -1,0 +1,11 @@
+fastapi
+uvicorn
+mysql-connector-python
+openai
+pydantic
+sqlalchemy
+langchain
+langgraph
+transformers
+alembic
+pymysql
