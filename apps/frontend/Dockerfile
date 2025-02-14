@@ -2,15 +2,12 @@
 FROM node:18
 
 # Set working directory
-WORKDIR /app
+WORKDIR /frontend
 
 # Copy package.json and install dependencies
 COPY package.json .
 COPY package-lock.json .
 RUN npm install
-
-# Copy app source code
-COPY . .
 
 # Expose port and start app
 EXPOSE 3000

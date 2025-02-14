@@ -17,6 +17,8 @@ services:
     build: ./apps/backend
     container_name: backend
     restart: always
+    volumes:
+       - ./apps/backend:/backend
     depends_on:
       - db
     ports:
@@ -26,19 +28,22 @@ services:
       DB_USER: root
       DB_PASSWORD: password
       DB_NAME: chatbot_db
+    command: uvicorn app:app --host 0.0.0.0 --port 8000 --reload
 
   frontend:
     build: ./apps/frontend
     container_name: frontend
     restart: always
     volumes:
-       - ./apps/frontend:/app
+       - ./apps/frontend:/frontend
     depends_on:
       - backend
     ports:
       - "3000:3000"
     environment:
-      REACT_APP_BACKEND_URL: "http://backend:8000"
+      # REACT_APP_BACKEND_URL: "http://backend:8000"
+      - REACT_APP_BACKEND_URL=http://localhost:8000
+      - WDS_SOCKET_PORT=0  # Prevent WebSocket issues
 
 volumes:
   database:

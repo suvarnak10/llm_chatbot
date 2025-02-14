@@ -2,16 +2,13 @@
 FROM python:3.10
 
 # Set working directory
-WORKDIR /app
+WORKDIR /backend
 
 # Copy only requirements.txt first to leverage caching
 COPY requirements.txt /app/requirements.txt
 
 # Install dependencies
 RUN pip install --no-cache-dir -r /app/requirements.txt
-
-# Copy the rest of the application
-COPY . /app
 
 # Expose FastAPI port
 EXPOSE 8000
