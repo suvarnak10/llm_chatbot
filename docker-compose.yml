@@ -31,6 +31,8 @@ services:
     build: ./apps/frontend
     container_name: frontend
     restart: always
+    volumes:
+       - ./apps/frontend:/app
     depends_on:
       - backend
     ports:

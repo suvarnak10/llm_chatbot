@@ -2,17 +2,21 @@
 FROM node:18
 
 # Set working directory
-WORKDIR /apps
+WORKDIR /app
 
-# Copy package files and install dependencies
-# COPY package.json package-lock.json ./
+# Copy package.json and install dependencies
+COPY package.json .
+COPY package-lock.json .
 RUN npm install
 
-# Copy project files
+# Copy app source code
 COPY . .
 
-# Expose React app port
+# Expose port and start app
 EXPOSE 3000
+# CMD ["npm", "start"]
 
-# Start React app
-CMD ["npm", "start"]
+# Keep container running
+CMD ["tail", "-f", "/dev/null"]
+
+# CMD ["npm", "start"]
